@@ -11,6 +11,7 @@ TagManager:
   - platform
   - bossBullet1
   - Boss
+  - turret
   layers:
   - Default
   - TransparentFX

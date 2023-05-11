@@ -7,12 +7,13 @@ public class turretShoot : MonoBehaviour
     public Transform shootPos;
     public GameObject bulletPrefab;
     BossBehavior BossB;
-    public bool shot = false;
-   
+    bool shot = true;
+ 
     // Start is called before the first frame update
     void Start()
     {
         BossB = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossBehavior>();
+      
     }
 
     // Update is called once per frame
@@ -20,32 +21,31 @@ public class turretShoot : MonoBehaviour
     {
         ActiveTurret();
     }
-
-    void ActiveTurret()
+    public void ActiveTurret()
     {
-       /* if(BossB.phase1 == true)
-        {
-            
-            Instantiate(bulletPrefab, shootPos.position, transform.rotation);
-            StartCoroutine(P1Spawn());
-        }*/
 
-        if (shot == true)
+       
+        if (BossB.phase1 && shot)
         {
-
+            Debug.Log("test");
             Instantiate(bulletPrefab, shootPos.position, transform.rotation);
+            shot = false;
             StartCoroutine(P1Spawn());
-            
-            
+
+
         }
-      
     }
-    IEnumerator P1Spawn()
-    {
-        shot = false;
-        yield return new WaitForSeconds(.25f);
-        shot = true;
+
+
+        IEnumerator P1Spawn()
+        {
+           
+            yield return new WaitForSeconds(.1f);
+            shot = true;
+
+        }
+
 
     }
-   
-}
+
+

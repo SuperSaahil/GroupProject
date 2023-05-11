@@ -17,18 +17,31 @@ public class BossBehavior : MonoBehaviour
     public GameObject bossPrefab1;
     bossBulletBehavior BBB;
     Animator anim;
+
+   public GameObject turret;
     public bool p1shoot = false;
     // Start is called before the first frame update
     void Start()
     {
-       // BBB = GameObject.FindGameObjectWithTag("bossBullet1").GetComponent<bossBulletBehavior>();
+        // BBB = GameObject.FindGameObjectWithTag("bossBullet1").GetComponent<bossBulletBehavior>();
+        
+        turret = GameObject.FindGameObjectWithTag("turret");
     }
 
     // Update is called once per frame
     void Update()
     {
         PhaseSwitch();
-        firstStage();
+        if (phase1)
+        {
+            // TS.ActiveTurret();
+            turret.SetActive(true);
+
+        }
+        else
+        {
+            turret.SetActive(false);
+        }
     }
 
     void PhaseSwitch()
@@ -62,28 +75,5 @@ public class BossBehavior : MonoBehaviour
             death = true;
         }
     }
-    void firstStage()
-    {
-        if (phase1 == true)
-        {
-            if(p1shoot == true)
-            {
-                Instantiate(bossPrefab1, shootPos.position, transform.rotation);
-                StartCoroutine(P1Spawn());
-            }
-            
-            //anim.SetTrigger("phase1");
-        }
-    }
-
-   
-
-    IEnumerator P1Spawn()
-    {
-        p1shoot = false;
-        yield return new WaitForSeconds(2f);
-        p1shoot = true;
-        
-
-    }
+  
 }

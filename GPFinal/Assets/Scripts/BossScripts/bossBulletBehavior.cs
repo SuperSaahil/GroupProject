@@ -53,6 +53,10 @@ public class bossBulletBehavior : MonoBehaviour
             PC.playerHP--;
              shot = true;
         }
+        else if(collision.gameObject.tag == "ground")
+        {
+            Destroy(gameObject);
+        }
       
     }
 
