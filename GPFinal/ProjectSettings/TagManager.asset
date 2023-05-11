@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - ground
+  - PlayerArm
+  - range
+  - platform
+  - bossBullet1
+  - Boss
   layers:
   - Default
   - TransparentFX

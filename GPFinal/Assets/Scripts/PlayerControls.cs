@@ -21,6 +21,7 @@ public class PlayerControls : MonoBehaviour
     private bool facingRight = true;
     public Transform shootPos;
     public GameObject bulletPrefab;
+    public int playerHP = 6;
  
 
 
@@ -136,7 +137,9 @@ public class PlayerControls : MonoBehaviour
             Instantiate(bulletPrefab, shootPos.position, transform.rotation);
         }
     }
-  
+    
+   
+
 
    
     IEnumerator punchCD()

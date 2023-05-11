@@ -10,11 +10,12 @@ public class bulletBehavior : MonoBehaviour
     EnemyHurt eh;
     public bool ehSignal;
     
+    
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        eh = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyHurt>();
+        eh = GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyHurt>();               
     }
 
     // Update is called once per frame
