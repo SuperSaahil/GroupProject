@@ -12,6 +12,9 @@ TagManager:
   - bossBullet1
   - Boss
   - turret
+  - bossPlat
+  - bossArm
+  - battery
   layers:
   - Default
   - TransparentFX

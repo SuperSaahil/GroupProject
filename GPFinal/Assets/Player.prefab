@@ -239,9 +239,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b2d8d8584d36f5498cd44066b765912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 9
   MoveDirection: 0
-  rb: {fileID: 0}
+  rb: {fileID: 2897901326646235281}
   isGrounded: 1
   Damage: 0
   RegPunch: 0
@@ -253,6 +253,8 @@ MonoBehaviour:
   isReached: 0
   shootPos: {fileID: 2897901326270412082}
   bulletPrefab: {fileID: 8741754623664621287, guid: a565dd5dba8343c4691f9b5b64d02799, type: 3}
+  playerHP: 6
+  isShot: 0
 --- !u!50 &2897901326646235281
 Rigidbody2D:
   serializedVersion: 4
@@ -270,7 +272,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4

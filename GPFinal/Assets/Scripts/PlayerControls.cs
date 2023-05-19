@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
 {
-    public float speed = 5;
+    public float speed = 9f;
     public float MoveDirection;
     public Rigidbody2D  rb;
     public bool isGrounded = true;
@@ -22,7 +23,7 @@ public class PlayerControls : MonoBehaviour
     public Transform shootPos;
     public GameObject bulletPrefab;
     public int playerHP = 6;
- 
+    public bool isShot = false;
 
 
 
@@ -62,7 +63,7 @@ public class PlayerControls : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.Space) && isGrounded == true)
         {
-            rb.velocity = new Vector3(0, 6, 0);
+            rb.velocity = new Vector3(0, 7, 0);
             isGrounded = false;
         }
     }
@@ -73,15 +74,18 @@ public class PlayerControls : MonoBehaviour
         {
             isGrounded = true;
         }
+       
         else collision.gameObject.CompareTag("platform");
         {
             transform.parent = collision.transform;
         }
+        
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
         transform.parent = null;
     }
+    
 
     void PlayerFlip()
     {
@@ -132,11 +136,15 @@ public class PlayerControls : MonoBehaviour
 
     void Shooting()
     {
-        if(Input.GetKeyDown(KeyCode.Tab))
+        if(Input.GetKeyDown(KeyCode.Tab) && isShot == false)
         {
+            isShot = true;
             Instantiate(bulletPrefab, shootPos.position, transform.rotation);
+            StartCoroutine(ShootCD());
+            
         }
     }
+    
     
    
 
@@ -157,8 +165,12 @@ public class PlayerControls : MonoBehaviour
 
     }
 
+    IEnumerator ShootCD()
+    {
+        yield return new WaitForSeconds(1f);
+        isShot = false;
+    }
    
-
 
 
 

@@ -57,6 +57,10 @@ public class bossBulletBehavior : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        else if(collision.gameObject.tag == "Boss")
+        {
+            Destroy(gameObject);
+        }
       
     }
 

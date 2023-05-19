@@ -38,14 +38,19 @@ public class bulletBehavior : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Enemy")
+        if (collision.gameObject.tag == "Enemy")
         {
             eh.TakeDamage(2);
-            ehSignal = true;     
+            ehSignal = true;
             Destroy(gameObject);
-            eh.GotShot(ehSignal);         
+            eh.GotShot(ehSignal);
+        }
+        else if(collision.gameObject.tag == "Boss")
+        {
+            Destroy(gameObject);
         }
     }
 
