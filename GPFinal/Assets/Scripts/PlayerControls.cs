@@ -46,7 +46,11 @@ public class PlayerControls : MonoBehaviour
         ReachATK();
         Jumping();
         Shooting();
-       
+       // WaveAnimation();
+       // HorizontalAnim();
+        PlayerDeath();
+
+
     }
     private void FixedUpdate()
     {
@@ -58,6 +62,25 @@ public class PlayerControls : MonoBehaviour
     {
         MoveDirection = Input.GetAxis("Horizontal");
         
+    }
+    void HorizontalAnim()
+    {
+        if(Input.GetKey(KeyCode.A))
+        {
+            anim.SetTrigger("PlayerA");
+        }
+        else if (Input.GetKey(KeyCode.D))
+        {
+            anim.SetTrigger("PlayerA");
+        }
+    }
+
+    void WaveAnimation()
+    {
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            anim.SetTrigger("Runner.Wave");
+        }
     }
     void Jumping()
     {
@@ -144,12 +167,21 @@ public class PlayerControls : MonoBehaviour
             
         }
     }
-    
-    
-   
+
+    void PlayerDeath()
+    {
+        if(playerHP <= 0)
+        {
+            Destroy(gameObject);
+            Debug.Log("you died");
+        }
+    }
 
 
-   
+
+
+
+
     IEnumerator punchCD()
     {
         yield return new WaitForSeconds(1f);
