@@ -15,6 +15,7 @@ TagManager:
   - bossPlat
   - bossArm
   - battery
+  - Spike
   layers:
   - Default
   - TransparentFX
