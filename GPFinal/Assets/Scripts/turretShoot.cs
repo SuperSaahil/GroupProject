@@ -54,7 +54,7 @@ public class turretShoot : MonoBehaviour
     }
     IEnumerator FinalTurret()
     {
-        yield return new WaitForSeconds(.15f);
+        yield return new WaitForSeconds(.35f);
         FinalShot = true;
     }
 

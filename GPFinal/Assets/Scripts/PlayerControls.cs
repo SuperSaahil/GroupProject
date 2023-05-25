@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -24,6 +25,12 @@ public class PlayerControls : MonoBehaviour
     public GameObject bulletPrefab;
     public int playerHP = 6;
     public bool isShot = false;
+    public bool WaveCoin = false;
+    public bool JumpCoin;
+    public  bool ShootCoin = false;
+    bool doublejump;
+    [SerializeField] private AudioSource bulletShotAudio;
+    [SerializeField] private AudioSource dumbSound;
 
 
 
@@ -33,7 +40,6 @@ public class PlayerControls : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        Arm = GameObject.FindGameObjectWithTag("PlayerArm").GetComponent<ArmCollider>();
        
         
     }
@@ -46,10 +52,10 @@ public class PlayerControls : MonoBehaviour
         ReachATK();
         Jumping();
         Shooting();
-       // WaveAnimation();
-       // HorizontalAnim();
+        WaveAnimation();
+        HorizontalAnim();
         PlayerDeath();
-
+        DoubleJump();
 
     }
     private void FixedUpdate()
@@ -84,11 +90,22 @@ public class PlayerControls : MonoBehaviour
     }
     void Jumping()
     {
-        if(Input.GetKey(KeyCode.Space) && isGrounded == true)
+        if(Input.GetKey(KeyCode.Space) && isGrounded == true && !JumpCoin)
         {
-            rb.velocity = new Vector3(0, 7, 0);
+            rb.velocity = new Vector3(0, 8, 0);
             isGrounded = false;
         }
+    }
+    
+    void DoubleJump()
+    {
+        if(Input.GetKey(KeyCode.Space) && isGrounded == true && JumpCoin )
+        {
+            rb.velocity = new Vector2(0, 11);
+            isGrounded = false;
+            
+        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -97,11 +114,16 @@ public class PlayerControls : MonoBehaviour
         {
             isGrounded = true;
         }
+        else if(collision.gameObject.tag == "Spike")
+        {
+            playerHP--;
+        }
        
         else collision.gameObject.CompareTag("platform");
         {
             transform.parent = collision.transform;
         }
+        
         
     }
     private void OnCollisionExit2D(Collision2D collision)
@@ -135,11 +157,12 @@ public class PlayerControls : MonoBehaviour
 
     void BasicPunch()
     {
-        if(Input.GetKey(KeyCode.E) && canReg == true)
+        if(Input.GetKey(KeyCode.E) && canReg == true &&WaveCoin == true)
         {
+            dumbSound.Play();
             canReg = false;
             isReg = true;
-            anim.SetTrigger("AttackStart");
+           // anim.SetTrigger("AttackStart");
             StartCoroutine(punchCD()); 
         }
               
@@ -159,8 +182,11 @@ public class PlayerControls : MonoBehaviour
 
     void Shooting()
     {
-        if(Input.GetKeyDown(KeyCode.Tab) && isShot == false)
+        if (Input.GetKeyDown(KeyCode.Tab) && isShot == false && ShootCoin == true)
         {
+            bulletShotAudio.Play();
+            Debug.Log("Audio Played");
+            Debug.Log("shoot");
             isShot = true;
             Instantiate(bulletPrefab, shootPos.position, transform.rotation);
             StartCoroutine(ShootCD());

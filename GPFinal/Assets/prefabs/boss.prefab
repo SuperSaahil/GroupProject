@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7406354440626971803}
   m_Layer: 0
   m_Name: boss
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.4922811, g: 0.22957456, b: 0.7264151, a: 1}
   m_FlipX: 0
@@ -158,6 +158,8 @@ MonoBehaviour:
   TP: 1
   shootPos: {fileID: 7406354442549179743}
   bossPrefab1: {fileID: 3702241838785929305, guid: b6f373d5e9e8c1046bf070cbd3541ae9, type: 3}
+  chasing: 0
+  turretTime: 0
   turret: {fileID: 0}
   p1shoot: 0
 --- !u!95 &7406354440626971803

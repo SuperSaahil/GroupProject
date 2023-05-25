@@ -11,11 +11,14 @@ public class EnemyBehvaior : MonoBehaviour
     public int nextId;
     private int idChangeVal = 1;
     public Transform target;
-    public float speed = 2;
+    public float speed = 5;
+    PlayerControls pc;
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        pc = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>();
+
     }
 
     // Update is called once per frame
@@ -71,6 +74,13 @@ public class EnemyBehvaior : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             ChaseToggle = true;
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Player")
+        {
+            pc.playerHP--;
         }
     }
 }

@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class BossBehavior : MonoBehaviour
 {
-    float MaxTP = 50f;
-    float MinTP = 25f;
+    float MaxTP = 608f;
+    float MinTP = 577f;
     public int BossHP = 10;
     public bool phase1;
     public bool phase2;
@@ -23,7 +23,6 @@ public class BossBehavior : MonoBehaviour
     Rigidbody2D rb;
     public bool chasing;
     public bool turretTime;
-    GameObject TS;
 
 
     public GameObject turret;
@@ -34,7 +33,6 @@ public class BossBehavior : MonoBehaviour
         // BBB = GameObject.FindGameObjectWithTag("bossBullet1").GetComponent<bossBulletBehavior>();
         turret = GameObject.FindGameObjectWithTag("turret");
         PC = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControls>();
-        platform = GameObject.FindGameObjectWithTag("bossPlat");
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
  
